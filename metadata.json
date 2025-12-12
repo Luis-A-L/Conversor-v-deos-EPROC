@@ -1,0 +1,5 @@
+{
+  "name": "Compressor de Vídeo E-PROC",
+  "description": "Uma ferramenta interna e segura para compactar arquivos de vídeo para o sistema E-PROC, com verificação automatizada de conformidade e simulação de fluxo de trabalho.",
+  "requestFramePermissions": []
+}
