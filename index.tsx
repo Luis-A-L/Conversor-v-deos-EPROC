@@ -125,9 +125,13 @@ const App = () => {
         const workerBlob = new Blob([workerScript], { type: 'application/javascript' });
         const workerBlobURL = URL.createObjectURL(workerBlob);
 
+        // Pré-carrega os blobs do core para garantir que a URL seja válida
+        const coreBlobURL = await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript');
+        const wasmBlobURL = await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm');
+
         await ffmpeg.load({
-          coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-          wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+          coreURL: coreBlobURL,
+          wasmURL: wasmBlobURL,
           workerURL: workerBlobURL, 
         });
 
